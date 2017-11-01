@@ -5,5 +5,9 @@ jobs:
     - task: hello
       config:
         platform: linux
+        image_resource:
+          type: docker-image
+          source: {repository: busybox}
         run:
-          path: ./hello.sh
+          path: echo
+          args: [hello world]
