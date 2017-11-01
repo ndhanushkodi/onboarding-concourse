@@ -1,7 +1,15 @@
 ---
+resources:
+- name: onboarding-concourse
+  type: git
+  source:
+    uri: git@github.com:ndhanushkodi/onboarding-concourse.git
+    branch: master
+
 jobs:
   - name: jobby-job
     plan:
+    - get: onboarding-concourse
     - task: hello
       config:
         platform: linux
