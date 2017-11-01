@@ -1,0 +1,9 @@
+---
+jobs:
+  - name: jobby-job
+    plan:
+    - task: hello
+      config:
+        platform: linux
+        run:
+          path: ./hello.sh
