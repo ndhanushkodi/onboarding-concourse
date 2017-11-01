@@ -6,6 +6,8 @@ releases:
   version: latest
 - name: garden-runc
   version: latest
+- name: postgres
+  version: latest
 
 stemcells:
 - alias: trusty
@@ -28,12 +30,16 @@ instance_groups:
       basic_auth_username: username
       basic_auth_password: password
       bind_port: 80
-      postgresql_database: &atc_db atc
+      postgresql:
+        database: atc
+        role:
+          name: admin
+          password: concoursedbpassword
   - name: tsa
     release: concourse
     properties: {}
 
-- name: db
+- name: database
   instances: 1
   vm_type: n1-standard-1
   stemcell: trusty
@@ -41,13 +47,16 @@ instance_groups:
   azs: [z1]
   networks: [{name: private}]
   jobs:
-  - name: postgresql
-    release: concourse
+  - name: postgres
+    release: postgres
     properties:
       databases:
-      - name: *atc_db
-        role: admin
-        password: concoursedbpassword
+        port: 5432
+        databases:
+        - name: atc
+        roles:
+        - name: admin
+          password: concoursedbpassword
 
 - name: worker
   instances: 1
