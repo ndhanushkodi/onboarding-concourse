@@ -5,6 +5,7 @@ resources:
   source:
     uri: git@github.com:ndhanushkodi/onboarding-concourse.git
     branch: master
+    private_key: ((private-repo-key))
 
 jobs:
   - name: jobby-job
