@@ -11,6 +11,7 @@ jobs:
   - name: jobby-job
     plan:
     - get: onboarding-concourse
+      trigger: true
     - task: hello
       config:
         platform: linux
