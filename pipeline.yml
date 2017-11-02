@@ -6,12 +6,17 @@ resources:
     uri: git@github.com:ndhanushkodi/onboarding-concourse.git
     branch: master
     private_key: ((private-repo-key))
+- name: hello-docker
+  type: docker-image
+  source:
+    repository: library/consul
 
 jobs:
   - name: jobby-job
     plan:
     - get: onboarding-concourse
       trigger: true
+    - get: hello-docker
     - task: hello
       config:
         platform: linux
@@ -21,3 +26,5 @@ jobs:
         run:
           path: echo
           args: [hello world]
+    - task: run-container
+      file: onboarding-concourse/ci/run-container/task.yml
