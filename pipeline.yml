@@ -9,7 +9,7 @@ resources:
 - name: hello-docker
   type: docker-image
   source:
-    repository: consul
+    repository: ubuntu
 
 jobs:
   - name: jobby-job
