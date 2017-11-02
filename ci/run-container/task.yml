@@ -11,4 +11,4 @@ inputs:
 - name: onboarding-concourse
 
 run:
-  path: /onboarding-concourse/ci/run-container/task
+  path: onboarding-concourse/ci/run-container/task
